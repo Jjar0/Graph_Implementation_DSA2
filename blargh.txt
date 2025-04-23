@@ -1,1 +1,6 @@
 Blargh
+
+2. Graph Implementation
+• Implement a graph with nodes, edges, and weights.
+• Include methods to add, edit, and remove nodes and edges.
+• Implement Dijkstra's algorithm using your graph structure.
