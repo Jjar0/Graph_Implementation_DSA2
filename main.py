@@ -29,8 +29,9 @@ class Graph:
             self.graphData[fromNode].pop(toNode, None)  # Remove edge if exists
 
     # Update weight of existing edge
-    def changeWeight(self, fromNode, toNode, newWeight):
-        self.graphData[fromNode][toNode] = newWeight  # Update edge weight
+    def changeWeight(self, fromNode, toNode, newWeight): # REVISION: VALIDATION ADDED
+        if fromNode in self.graphData and toNode in self.graphData[fromNode]:
+            self.graphData[fromNode][toNode] = newWeight  # Update edge weight
 
     # Run dijkstra from a node
     def runDijkstra(self, startNode):
