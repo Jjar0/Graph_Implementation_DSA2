@@ -72,37 +72,67 @@ def main():
         choice = input("[1-8]> ")
 
         if choice == "1":
-            node = input("[Enter node name]> ")
+            node = input("[Enter node name]> ").strip()
+            if node == "":
+                print("Node name cannot be empty.")
+                continue
             g.makeNode(node)  # Add node
             print(f"Node '{node}' added.")
 
         elif choice == "2":
-            node = input("[Enter node name to remove]> ")
+            node = input("[Enter node name to remove]> ").strip()
+            if node not in g.graphData:
+                print(f"Node '{node}' not found.")
+                continue
             g.deleteNode(node)  # Remove node
             print(f"Node '{node}' removed.")
 
         elif choice == "3":
-            fromNode = input("[From node]> ")
-            toNode = input("[To node]> ")
-            weight = int(input("[Enter weight]> "))
+            fromNode = input("[From node]> ").strip()
+            toNode = input("[To node]> ").strip()
+            if fromNode == "" or toNode == "":
+                print("Node names cannot be empty.")
+                continue
+            try:
+                weight = int(input("[Enter weight]> ")) # Make sure weight is positive number
+                if weight < 0:
+                    raise ValueError
+            except ValueError:
+                print("Weight must be a positive integer.")
+                continue
             g.linkNodes(fromNode, toNode, weight)  # Add new edge
             print(f"Edge from '{fromNode}' to '{toNode}' added with weight {weight}.")
 
         elif choice == "4":
-            fromNode = input("[From node]> ")
-            toNode = input("[To node]> ")
+            fromNode = input("[From node]> ").strip()
+            toNode = input("[To node]> ").strip()
+            if fromNode not in g.graphData: # Check if node is in graph
+                print(f"Node '{fromNode}' not found.")
+                continue
+            if toNode not in g.graphData[fromNode]:
+                print(f"Edge from '{fromNode}' to '{toNode}' not found.")
+                continue
             g.unlinkNodes(fromNode, toNode)  # Remove edge
             print(f"Edge from '{fromNode}' to '{toNode}' removed.")
 
         elif choice == "5":
-            fromNode = input("[From node]> ")
-            toNode = input("[To node]> ")
-            weight = int(input("[New weight]> "))
+            fromNode = input("[From node]> ").strip()
+            toNode = input("[To node]> ").strip()
+            if fromNode not in g.graphData or toNode not in g.graphData[fromNode]:
+                print(f"Edge from '{fromNode}' to '{toNode}' does not exist.")
+                continue
+            try:
+                weight = int(input("[New weight]> "))
+                if weight < 0:
+                    raise ValueError
+            except ValueError:
+                print("Weight must be a non-negative integer.")
+                continue
             g.changeWeight(fromNode, toNode, weight)  # Update edge weight
             print(f"Edge from '{fromNode}' to '{toNode}' updated to {weight}.")
 
         elif choice == "6":
-            startNode = input("[Start node for Dijkstra's algorithm]> ")
+            startNode = input("[Start node for Dijkstra's algorithm]> ").strip()
             if startNode not in g.graphData:
                 print("Start node not found")
                 continue
@@ -113,6 +143,8 @@ def main():
 
         elif choice == "7":
             print("[Graph structure]:")
+            if not g.graphData:
+                print("Graph is empty.")
             for node, edges in g.graphData.items():
                 print(f"{node} -> {edges}")  # Print adjacency list
 
@@ -121,7 +153,8 @@ def main():
             break  # Exit 
 
         else:
-            print("[Please select a number between 1 and 8.]")
+            print("Please select a number between 1 and 8.")
 
 if __name__ == "__main__":
     main()
+
