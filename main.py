@@ -35,6 +35,10 @@ class Graph:
 
     # Run dijkstra from a node
     def runDijkstra(self, startNode):
+        if startNode not in self.graphData:
+            print(f"Start node '{startNode}' not found in graph.")
+            return {}
+
         distances = {node: float('inf') for node in self.graphData}  # Start with infinite distances
         distances[startNode] = 0  # Distance to self is 0
         pq = [(0, startNode)]  # Priority queue with start node
@@ -53,6 +57,7 @@ class Graph:
                     heapq.heappush(pq, (newDist, neighbor))  # Add to priority queue
 
         return distances  # Return shortest distances from start node
+
 
 # Main menu
 def main():
