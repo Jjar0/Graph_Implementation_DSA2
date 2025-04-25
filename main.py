@@ -76,32 +76,32 @@ def main():
             g.makeNode(node)  # Add node
             print(f"Node '{node}' added.")
 
-        elif choice == "2":
+        if choice == "2":
             node = input("[Enter node name to remove]> ")
             g.deleteNode(node)  # Remove node
             print(f"Node '{node}' removed.")
 
-        elif choice == "3":
+        if choice == "3":
             fromNode = input("[From node]> ")
             toNode = input("[To node]> ")
             weight = int(input("[Enter weight]> "))
             g.linkNodes(fromNode, toNode, weight)  # Add new edge
             print(f"Edge from '{fromNode}' to '{toNode}' added with weight {weight}.")
 
-        elif choice == "4":
+        if choice == "4":
             fromNode = input("[From node]> ")
             toNode = input("[To node]> ")
             g.unlinkNodes(fromNode, toNode)  # Remove edge
             print(f"Edge from '{fromNode}' to '{toNode}' removed.")
 
-        elif choice == "5":
+        if choice == "5":
             fromNode = input("[From node]> ")
             toNode = input("[To node]> ")
             weight = int(input("[New weight]> "))
             g.changeWeight(fromNode, toNode, weight)  # Update edge weight
             print(f"Edge from '{fromNode}' to '{toNode}' updated to {weight}.")
 
-        elif choice == "6":
+        if choice == "6":
             startNode = input("[Start node for Dijkstra's algorithm]> ")
             if startNode not in g.graphData:
                 print("Start node not found")
@@ -111,17 +111,17 @@ def main():
             for node, distance in distances.items():
                 print(f"  {node}: {distance}")
 
-        elif choice == "7":
+        if choice == "7":
             print("[Graph structure]:")
             for node, edges in g.graphData.items():
                 print(f"{node} -> {edges}")  # Print adjacency list
 
-        elif choice == "8":
-            print("[Exiting program.]")
+        if choice == "8":
+            print("[Exiting]")
             break  # Exit 
 
         else:
-            print("[Invalid choice. Please select a number between 1 and 8.]")
+            print("[Please select a number between 1 and 8]")
 
 if __name__ == "__main__":
     main()
