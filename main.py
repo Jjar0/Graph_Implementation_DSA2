@@ -30,8 +30,7 @@ class Graph:
 
     # Update weight of existing edge
     def changeWeight(self, fromNode, toNode, newWeight):
-        if fromNode in self.graphData and toNode in self.graphData[fromNode]:
-            self.graphData[fromNode][toNode] = newWeight  # Update edge weight
+        self.graphData[fromNode][toNode] = newWeight  # Update edge weight
 
     # Run dijkstra from a node
     def runDijkstra(self, startNode):
