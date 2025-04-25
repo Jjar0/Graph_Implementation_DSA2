@@ -3,7 +3,7 @@ import heapq  # Import heapq to use priority queue in dijkstra
 # Graph class
 class Graph:
     def __init__(self):
-        self.graphData = {}  # Dictionary to store adjacency list {node: {neighbor: weight}}
+        self.graphData = {}  # Dictionary to store adjacency list
 
     # Add node to graph
     def makeNode(self, node):
